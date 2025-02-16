@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AddCategoryRequest } from '../models/add-category-request.model';
 import { CategoryService } from '../services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
@@ -10,7 +11,7 @@ import { CategoryService } from '../services/category.service';
 export class AddCategoryComponent {
   model:AddCategoryRequest;
 
-  constructor(private service:CategoryService){
+  constructor(private service:CategoryService,private router:Router){
    this.model={
     name:'',
     urlHandle:''
@@ -22,7 +23,7 @@ export class AddCategoryComponent {
    .subscribe(
     {
       next:(response)=>{
-        console.log("this was successful");
+        this.router.navigateByUrl('/admin/categories')
       }
     }
    )
