@@ -12,7 +12,7 @@ import { LoginComponent } from './core/components/login/login.component';
 import { EditcategoryComponent } from './features/category/editcategory/editcategory.component';
 import { BlogpostListComponent } from './features/blogpost/blogpost-list/blogpost-list.component';
 import { AddBlogpostComponent } from './features/blogpost/add-blogpost/add-blogpost.component'
-
+import { MarkdownModule} from 'ngx-markdown'
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,8 @@ import { AddBlogpostComponent } from './features/blogpost/add-blogpost/add-blogp
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

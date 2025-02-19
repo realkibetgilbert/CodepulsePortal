@@ -1,3 +1,5 @@
+import { CategoryToDisplay } from "../../category/models/category-to-display.model";
+
 export interface BlogPostToDisplay{
     id:string;
     title:string;
@@ -8,4 +10,5 @@ export interface BlogPostToDisplay{
     author:string;
     publishedDate:Date;
     isVisible:boolean;
+    categories:CategoryToDisplay[];
 }
