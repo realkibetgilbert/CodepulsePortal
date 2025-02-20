@@ -17,6 +17,7 @@ export class EditBlogpostComponent implements OnInit {
   model?: BlogPostToDisplay;
   selectedCategories?:string[];
   categories$?:Observable<CategoryToDisplay[]>;
+  isImageSelectorVisible:boolean=false;
   constructor(
     private route: ActivatedRoute,
     private blogPostService: BlogPostService,
@@ -60,5 +61,12 @@ export class EditBlogpostComponent implements OnInit {
       }
     })
   }
+  }
+  openImageSelector():void{
+   this.isImageSelectorVisible=true;
+
+  }
+  closeImageSelector(){
+    this.isImageSelectorVisible=false;
   }
 }
