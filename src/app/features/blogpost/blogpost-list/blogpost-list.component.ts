@@ -21,4 +21,14 @@ export class BlogpostListComponent implements OnInit {
   getBlogPosts() {
    this.blogPost$ =this.service.getBlogPosts()
   }
+  onDelete(id: string) {
+    this.service.deleteBlogPost(id).subscribe({
+      next: () => {
+        this.getBlogPosts(); // Refresh category list
+      },
+      error: (err) => {
+        console.error("Error deleting blog:", err);
+      }
+    });
+  }
 }
