@@ -15,7 +15,7 @@ export class BlogPostService {
 
   createBlogPost(model: AddBlogPost): Observable<BlogPostToDisplay> {
     return this.http.post<BlogPostToDisplay>(
-      `${environment.localApiUrl}/BlogPost`,
+      `${environment.localApiUrl}/BlogPost?addAuth=true`,
       model
     );
   }
@@ -34,11 +34,11 @@ export class BlogPostService {
     return this.http.get<BlogPostToDisplay>(`${environment.localApiUrl}/BlogPost/${urlHandle}`);
   }
   updateBlogPost(id:string,model:UpdateBlogPost):Observable<BlogPostToDisplay>{
-    return this.http.put<BlogPostToDisplay>(`${environment.localApiUrl}/BlogPost/${id}`,model);
+    return this.http.put<BlogPostToDisplay>(`${environment.localApiUrl}/BlogPost/${id}?addAuth=true`,model);
   }
 
   deleteBlogPost(id:string):Observable<BlogPostToDisplay>{
-    return this.http.delete<BlogPostToDisplay>(`${environment.localApiUrl}/BlogPost/${id}`)
+    return this.http.delete<BlogPostToDisplay>(`${environment.localApiUrl}/BlogPost/${id}?addAuth=true`)
   }
 
 

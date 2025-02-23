@@ -7,8 +7,7 @@ import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { CategoryListComponent } from './features/category/category-list/category-list.component';
 import { AddCategoryComponent } from './features/category/add-category/add-category.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './core/components/login/login.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EditcategoryComponent } from './features/category/editcategory/editcategory.component';
 import { BlogpostListComponent } from './features/blogpost/blogpost-list/blogpost-list.component';
 import { AddBlogpostComponent } from './features/blogpost/add-blogpost/add-blogpost.component'
@@ -16,21 +15,23 @@ import { MarkdownModule} from 'ngx-markdown';
 import { EditBlogpostComponent } from './features/blogpost/edit-blogpost/edit-blogpost.component';
 import { ImageSelectorComponent } from './shared/components/image-selector/image-selector.component';
 import { HomeComponent } from './features/public/home/home.component';
-import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component'
+import { BlogDetailsComponent } from './features/public/blog-details/blog-details.component';
+import { LoginComponent } from './features/auth/login/login.component'
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CategoryListComponent,
     AddCategoryComponent,
-    LoginComponent,
     EditcategoryComponent,
     BlogpostListComponent,
     AddBlogpostComponent,
     EditBlogpostComponent,
     ImageSelectorComponent,
     HomeComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +40,13 @@ import { BlogDetailsComponent } from './features/public/blog-details/blog-detail
     HttpClientModule,
     MarkdownModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,22 +1,41 @@
 <div class="container">
   <h1 class="mt-3">Category List</h1>
-  <div class="d-flex justify-content-end mt-3">
+  <div class="d-flex justify-content-between mt-3">
+  <div class="d-flex">
+    <input type="text" class="form-control" #queryText>
+    <button class="btn btn-warning ms-3" (click)="onSearch(queryText.value)">Search</button>
+  </div>
+
     <a class="btn btn-primary" [routerLink]="['/admin/categories/add']"
       >Add Category</a
     >
   </div>
-  <ng-container *ngIf="categories">
+  <ng-container *ngIf="categories$ | async as categories">
     <table class="table table-bordered mt-3">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
+          <!-- <th>Id</th> -->
+          <th>
+            Name
+          <span>
+            <span>
+              <button type="button" class="btn btn-light" (click)="sort('name','asc')">
+                <i class="bi bi-arrow-up"></i>
+              </button>
+            </span>
+            <span>
+              <button type="button" class="btn btn-light" (click)="sort('name','desc')">
+                <i class="bi bi-arrow-down"></i>
+              </button>
+            </span>
+          </span>
+          </th>
           <th>UrlHandle</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let category of categories">
-           <td>{{category.id}}</td> 
+           <!-- <td>{{category.id}}</td>  -->
            <td>{{category.name}}</td> 
            <td>{{category.urlHandle}}</td> 
            <td>
@@ -27,5 +46,6 @@
         </tr>
       </tbody>
     </table>
+ 
   </ng-container>
 </div>
